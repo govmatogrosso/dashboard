@@ -357,6 +357,30 @@ img, video { max-width: 100%; }
 .sc [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 @media (prefers-reduced-motion: no-preference) { .sc .hero svg.selo .gira { transform-origin: 70px 70px; animation: sc-gira 18s linear infinite; } }
 @keyframes sc-gira { to { transform: rotate(360deg); } }
+/* colunas pela quantidade de cartões, para a última linha nunca ficar incompleta */
+.sc .main { container: painel / inline-size; }
+.sc :is(.grid, .resumo):is(:has(> :nth-child(3):last-child), :has(> :nth-child(4):last-child), :has(> :nth-child(5):last-child), :has(> :nth-child(6):last-child)) { grid-template-columns: minmax(0, 1fr); }
+@container painel (min-width: 400px) {
+  .sc :is(.grid, .resumo):is(:has(> :nth-child(4):last-child), :has(> :nth-child(5):last-child), :has(> :nth-child(6):last-child)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) > :last-child { grid-column: span 2; }
+}
+@container painel (min-width: 640px) {
+  .sc :is(.grid, .resumo):has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sc :is(.grid, .resumo):has(> :nth-child(6):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) > * { grid-column: span 2; }
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) > :nth-child(n+4) { grid-column: span 3; }
+}
+@container painel (min-width: 860px) {
+  .sc :is(.grid, .resumo):has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@container painel (min-width: 1000px) {
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .sc :is(.grid, .resumo):has(> :nth-child(5):last-child) > :nth-child(n) { grid-column: auto; }
+}
+@container painel (min-width: 1260px) {
+  .sc :is(.grid, .resumo):has(> :nth-child(6):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
 
 </style>
 </head>
