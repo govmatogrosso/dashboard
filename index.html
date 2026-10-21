@@ -76,7 +76,7 @@ img, video { max-width: 100%; }
 .sc .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-md); }
 .sc .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
 .sc .card { background: var(--color-panel); border: 1px solid color-mix(in srgb, var(--color-fg) 9%, transparent); border-radius: var(--r); padding: var(--cds-pad-lg); min-width: 0; box-shadow: 0 1px 0 color-mix(in srgb, #fff 6%, transparent) inset, 0 10px 30px -18px rgba(0,0,0,.35); }
-.sc .kpi { position: relative; overflow: hidden; display: flex; flex-direction: column; text-align: left; align-items: flex-start; padding: var(--cds-pad-lg) var(--cds-pad-lg) var(--cds-pad-lg); }
+.sc .kpi { position: relative; overflow: hidden; container-type: inline-size; display: flex; flex-direction: column; text-align: left; align-items: flex-start; padding: var(--cds-pad-lg) var(--cds-pad-lg) var(--cds-pad-lg); }
 .sc .kpi:not(.mini):not(.lima):not(.azul)::after { content: ""; position: absolute; width: 140px; height: 140px; right: -50px; top: -60px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--lima) 16%, transparent), transparent 70%); pointer-events: none; }
 .sc .kpi.lima::after, .sc .kpi.azul::after { content: ""; position: absolute; width: 120px; height: 120px; right: -36px; top: -36px; border-radius: 50%; border: 18px solid rgba(255,255,255,.18); pointer-events: none; }
 .sc .kpi .lb { font-family: var(--disp); font-weight: 600; text-transform: none; font-size: var(--t1); line-height: 1.25; color: var(--color-fg); display: inline-flex; align-items: center; gap: .5rem; }
@@ -86,7 +86,7 @@ img, video { max-width: 100%; }
 .sc .kpi.azul .lb .selo { background: #fff; color: var(--azul); }
 .sc .lb .selo.claro { color: var(--tinta); }
 .sc .lb .selo.escuro { color: #fff; }
-.sc .kpi .val { font-family: var(--dest); font-size: clamp(2rem, 4.5vw, 2.9rem); line-height: 1; font-variant-numeric: tabular-nums; margin: var(--cds-gap-lg) 0 var(--cds-gap-xs); min-height: 1em; min-width: 3ch; }
+.sc .kpi .val { font-family: var(--dest); font-size: min(clamp(2rem, 4.5vw, 2.9rem), 15.5cqi); white-space: nowrap; line-height: 1; font-variant-numeric: tabular-nums; margin: var(--cds-gap-lg) 0 var(--cds-gap-xs); min-height: 1em; min-width: 3ch; }
 .sc .kpi .note { font-size: var(--t2); color: var(--color-fg-muted); margin-top: 0; }
 .sc .kpi.lima { background: var(--lima); border-color: var(--lima); color: var(--tinta); }
 .sc .kpi.lima .note, .sc .kpi.lima .lb { color: rgba(17,17,17,.72); }
@@ -166,7 +166,7 @@ img, video { max-width: 100%; }
 .sc .tk-kpis { grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin-bottom: var(--cds-gap-lg); }
 .sc .kpi.mini { padding: var(--cds-pad-sm); }
 .sc .kpi.mini .lb { font-size: var(--t2); }
-.sc .kpi.mini .val { font-size: clamp(1.5rem, 3vw, 2rem); margin-top: var(--cds-gap-sm); }
+.sc .kpi.mini .val { font-size: min(clamp(1.5rem, 3vw, 2rem), 19.5cqi); margin-top: var(--cds-gap-sm); }
 .sc .tk-charts { margin-bottom: 0; }
 .sc .evo-t { font-size: var(--t2); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-xs); }
 .sc .evo-t b { color: var(--color-fg); font-weight: 600; }
@@ -332,7 +332,7 @@ img, video { max-width: 100%; }
 .sc .resumo .rs { cursor: pointer; transition: transform .15s, box-shadow .15s; padding: var(--cds-pad-md) var(--cds-pad-lg); }
 .sc .resumo .rs:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -16px rgba(0,0,0,.45); }
 .sc .resumo .rs:focus-visible { outline: 3px solid var(--lima); outline-offset: 2px; }
-.sc .resumo .val { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin-top: var(--cds-gap-md); }
+.sc .resumo .val { font-size: min(clamp(1.6rem, 3.4vw, 2.3rem), 17.5cqi); margin-top: var(--cds-gap-md); }
 .sc .seg-ig { margin-top: var(--cds-gap-md); }
 .sc .seg-kpis { margin-bottom: var(--cds-gap-md); }
 .sc .yt-eng { display: flex; height: 18px; border-radius: 999px; overflow: hidden; margin: var(--cds-gap-xs) 0; }
