@@ -239,6 +239,9 @@ img, video { max-width: 100%; }
 @media (prefers-reduced-motion: no-preference) { .sc .glass { animation: sc-flut 6s ease-in-out infinite; } .sc .glass.g2 { animation-delay: -1.2s; } .sc .glass.g3 { animation-delay: -2.4s; } .sc .glass.g4 { animation-delay: -3.6s; } .sc .glass.g5 { animation-delay: -4.8s; } }
 @keyframes sc-flut { 50% { translate: 0 -8px; } }
 @media (max-width: 640px) { .sc .glass { display: none; } }
+/* data da atualização: fica à esquerda dos ícones de vidro (o g2 começa em 47% da largura) */
+.sc .hero .atualizado { font-size: var(--t2); max-width: 42cqi; }
+@media (max-width: 640px) { .sc .hero .atualizado { max-width: none; } }
 .sc .redes-wrap { position: relative; }
 .sc .rede-painel { margin-top: var(--cds-gap-md); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--r); padding: var(--cds-pad-lg); }
 .sc .rede-painel > [hidden] { display: none; }
@@ -405,6 +408,7 @@ img, video { max-width: 100%; }
   </div>
   <header class="hero" id="topo">
     <h1>Comunicação<br>Dirigida <span class="lima">2026</span></h1>
+    <p class="take atualizado" id="atualizado" hidden></p>
     <svg class="estrela e1" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z"/></svg>
     <svg class="estrela e2" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 C54 34 66 46 100 50 C66 54 54 66 50 100 C46 66 34 54 0 50 C34 46 46 34 50 0Z"/></svg>
     <div class="glass g1" aria-hidden="true"><span class="emo-g">🩷</span></div>
@@ -442,13 +446,13 @@ img, video { max-width: 100%; }
       <div class="rede-painel" id="rede-pop">
         <div class="pop-tk" id="tiktok">
       <h3 class="h3c ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span>TikTok em 2026</h3>
-      <p class="sub">Relatório exportado do TikTok, de 1º de janeiro a 17 de outubro. Interações somam curtidas, comentários e compartilhamentos.</p>
+      <p class="sub">Relatório exportado do TikTok, de 1º de janeiro <span id="tk-ate"></span>. Interações somam curtidas, comentários e compartilhamentos.</p>
       <div class="grid tk-kpis">
         <div class="kpi mini"><div class="lb">Visualizações no ano</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=views_ano"></div></div>
         <div class="kpi mini"><div class="lb">Média mensal de visualizações</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=media_views_s1"></div><div class="note">Primeiro semestre</div></div>
         <div class="kpi mini"><div class="lb">Média mensal de interações</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=media_inter_s1"></div><div class="note">Primeiro semestre</div></div>
         <div class="kpi mini"><div class="lb">Taxa de interação</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=taxa_ano"></div><div class="note">Curtidas, comentários e compartilhamentos por visualização. Sem salvamentos</div></div>
-        <div class="kpi mini"><div class="lb">Outubro</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=views_out"></div><div class="note">visualizações até 17/10</div></div>
+        <div class="kpi mini"><div class="lb" id="tk-mes-lb">Mês atual</div><div class="val dash-skeleton" data-source="tiktok_kpis" data-field="valor" data-where="metrica=views_mes"></div><div class="note" id="tk-mes-nota">visualizações no mês</div></div>
       </div>
       <div class="grid2 tk-charts">
         <div data-source="tiktok_mes">
@@ -465,7 +469,7 @@ img, video { max-width: 100%; }
       <h3 class="h3c ttl"><span class="ico" aria-hidden="true" id="meta-ico"></span><span id="meta-tit"></span></h3>
       <p class="sub" id="meta-sub"></p>
       <div class="grid tk-kpis" data-source="meta_kpis">
-        <div class="kpi mini"><div class="lb">Visualizações no ano</div><div class="val dash-skeleton" data-mk="views_ano"></div><div class="note">até 20/10</div></div>
+        <div class="kpi mini"><div class="lb">Visualizações no ano</div><div class="val dash-skeleton" data-mk="views_ano"></div><div class="note" id="meta-ate"></div></div>
         <div class="kpi mini"><div class="lb">Média mensal de visualizações</div><div class="val dash-skeleton" data-mk="media_views_s1"></div><div class="note">Primeiro semestre</div></div>
         <div class="kpi mini"><div class="lb">Média mensal de interações</div><div class="val dash-skeleton" data-mk="media_inter_s1"></div><div class="note">Primeiro semestre</div></div>
         <div class="kpi mini"><div class="lb">Taxa de interação</div><div class="val dash-skeleton" data-mk="taxa_ano"></div><div class="note" id="meta-taxa-nota">Interações por visualização</div></div>
@@ -495,7 +499,7 @@ img, video { max-width: 100%; }
     </div>
         <div class="pop-tk" id="pop-yt" hidden>
       <h3 class="h3c ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></span>YouTube Shorts</h3>
-      <p class="sub">Canal GovMT, de 16 de janeiro de 2023 a 20 de outubro de 2026, pelas estatísticas de Shorts do YouTube Studio. A conta é compartilhada entre a Comunicação Dirigida e o Jornalismo, então os números incluem o trabalho das duas equipes.</p>
+      <p class="sub">Canal GovMT<span id="yt-periodo"></span>, pelas estatísticas de Shorts do YouTube Studio. A conta é compartilhada entre a Comunicação Dirigida e o Jornalismo, então os números incluem o trabalho das duas equipes.</p>
       <div class="grid tk-kpis" data-source="youtube_resumo">
         <div class="kpi mini"><div class="lb">Visualizações</div><div class="val dash-skeleton" data-yt="Visualizações"></div><div class="note">dos Shorts</div></div>
         <div class="kpi mini"><div class="lb">Visualizações intencionais</div><div class="val dash-skeleton" data-yt="Visualizações intencionais"></div><div class="note">quem escolheu assistir</div></div>
@@ -543,7 +547,7 @@ img, video { max-width: 100%; }
   </section>
   <section id="videos">
     <h2 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></span>Destaques do Mês</h2>
-    <p class="sub">Dados de outubro de 2026.</p>
+    <p class="sub" id="vid-sub">Dados do mês em andamento.</p>
     <div class="vgrid dash-skeleton" id="vgrid" data-source="videos_rank"></div>
   </section>
   <section id="producao-resumo">
@@ -557,7 +561,7 @@ img, video { max-width: 100%; }
     <div class="par">
     <section class="card" id="por-mes">
       <h2 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M6 16v-5"/><path d="M11 16V6"/><path d="M16 16v-8"/></svg></span>Produção por mês e por tipo</h2>
-      <p class="sub">Clique numa cor para ver quem fez. A faixa sombreada marca o período eleitoral. Outubro vai até hoje.</p>
+      <p class="sub">Clique numa cor para ver quem fez. A faixa sombreada marca o período eleitoral. <span id="mes-parcial"></span></p>
       <div class="chartbox" data-source="por_mes">
         <div class="legend" id="leg-mes"></div>
         <div id="ch-mes" class="dash-skeleton" style="min-height:250px"></div>
@@ -573,15 +577,15 @@ img, video { max-width: 100%; }
     </div>
   </section>
   <section id="pendencias">
-    <h2 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span>Acompanhamento de outubro</h2>
+    <h2 class="ttl"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></span><span id="acomp-tit">Acompanhamento do mês</span></h2>
     <p class="sub">Passe o mouse num número para ver quem está com cada item.</p>
     <div class="grid st-grid">
-        <button type="button" class="card kpi azul st" data-st="Concluído"><div class="lb"><span class="selo" data-i="check" aria-hidden="true"></span>Concluídos</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Concluído"></div><div class="note">no mês</div></button>
-        <button type="button" class="card kpi lima st" data-st="__pend"><div class="lb"><span class="selo" data-i="ampulheta" aria-hidden="true"></span>Pendentes</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Pendentes"></div><div class="note">ainda não concluídos</div></button>
-        <button type="button" class="card kpi st" data-st="Não iniciada"><div class="lb"><span class="selo" data-i="circulo" data-cor="Não iniciada" aria-hidden="true"></span>Não iniciada</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Não iniciada"></div><div class="note">itens</div></button>
-        <button type="button" class="card kpi st" data-st="Em andamento"><div class="lb"><span class="selo" data-i="andamento" data-cor="Em andamento" aria-hidden="true"></span>Em andamento</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Em andamento"></div><div class="note">itens</div></button>
-        <button type="button" class="card kpi st" data-st="Em aprovação"><div class="lb"><span class="selo" data-i="olho" data-cor="Em aprovação" aria-hidden="true"></span>Em aprovação</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Em aprovação"></div><div class="note">itens</div></button>
-        <button type="button" class="card kpi st" data-st="Pausado"><div class="lb"><span class="selo" data-i="pausa" data-cor="Pausado" aria-hidden="true"></span>Pausado</div><div class="val dash-skeleton" data-source="outubro_status" data-field="n" data-where="status=Pausado"></div><div class="note">itens</div></button>
+        <button type="button" class="card kpi azul st" data-st="Concluído"><div class="lb"><span class="selo" data-i="check" aria-hidden="true"></span>Concluídos</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Concluído"></div><div class="note">no mês</div></button>
+        <button type="button" class="card kpi lima st" data-st="__pend"><div class="lb"><span class="selo" data-i="ampulheta" aria-hidden="true"></span>Pendentes</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Pendentes"></div><div class="note">ainda não concluídos</div></button>
+        <button type="button" class="card kpi st" data-st="Não iniciada"><div class="lb"><span class="selo" data-i="circulo" data-cor="Não iniciada" aria-hidden="true"></span>Não iniciada</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Não iniciada"></div><div class="note">itens</div></button>
+        <button type="button" class="card kpi st" data-st="Em andamento"><div class="lb"><span class="selo" data-i="andamento" data-cor="Em andamento" aria-hidden="true"></span>Em andamento</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Em andamento"></div><div class="note">itens</div></button>
+        <button type="button" class="card kpi st" data-st="Em aprovação"><div class="lb"><span class="selo" data-i="olho" data-cor="Em aprovação" aria-hidden="true"></span>Em aprovação</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Em aprovação"></div><div class="note">itens</div></button>
+        <button type="button" class="card kpi st" data-st="Pausado"><div class="lb"><span class="selo" data-i="pausa" data-cor="Pausado" aria-hidden="true"></span>Pausado</div><div class="val dash-skeleton" data-source="acompanhamento_status" data-field="n" data-where="status=Pausado"></div><div class="note">itens</div></button>
     </div>
     <section class="card p-painel" id="p-painel" data-source="pendencias_pessoa">
       <h3 class="h3c ttl"><span class="ico" aria-hidden="true" id="p-ico"></span><span id="p-tit"></span></h3>
@@ -589,7 +593,7 @@ img, video { max-width: 100%; }
       <div class="legend" id="leg-st"></div>
       <div class="bars" id="bars-pend"></div>
       <div class="tbl p-tbl">
-        <table data-source="notion_outubro" data-row-key="url" id="tb-pend">
+        <table data-source="acompanhamento" data-row-key="url" id="tb-pend">
           <thead><tr><th data-field="Conteúdo">Conteúdo</th><th data-field="Responsável">Responsável</th><th data-field="Status">Status</th></tr></thead>
           <tbody id="tb-pend-body"></tbody>
         </table>
@@ -699,6 +703,8 @@ img, video { max-width: 100%; }
 // faz os cálculos, guarda as escolhas (filtros) e redesenha a página quando algo muda.
 (function () {
   const DADOS = window.DADOS || {};
+  // arquivos de dados antigos chamavam o acompanhamento de notion_outubro
+  if (!DADOS.acompanhamento && DADOS.notion_outubro) DADOS.acompanhamento = DADOS.notion_outubro;
   const calcs = {}, cache = {}, avisos = [];
   let params = {}, desenho = null, agendado = false;
   function obter(id, pilha) {
@@ -756,8 +762,35 @@ img, video { max-width: 100%; }
 </script>
 <script>
 
-const MESES = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out*"];
-const MES_NOME = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro"];
+// mês em andamento e datas das exportações vêm de DADOS_INFO, no topo do dados.js
+const INFO = window.DADOS_INFO || {};
+const MES_CURTO = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+const MES_LONGO = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const MES_ATUAL = /^\d{4}-\d{2}$/.test(INFO.mes_atual || "") ? INFO.mes_atual
+  : ((window.DADOS && window.DADOS.producao) || []).reduce((a, r) => String(r.mes) > a ? String(r.mes) : a, "2026-01");
+const N_MES = Number(MES_ATUAL.slice(5, 7));
+const MES_ATUAL_NOME = MES_LONGO[N_MES - 1];
+const MESES = MES_CURTO.slice(0, N_MES).map((m, i) => i === N_MES - 1 ? m + "*" : m);
+const MES_NOME = MES_LONGO.slice(0, N_MES);
+const maiusc = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+// "2026-10-17" vira "17 de outubro" (com o ano, se pedido) ou "17/10"
+const dataLonga = (iso, comAno) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); return m ? (Number(m[3]) === 1 ? "1º" : Number(m[3])) + " de " + MES_LONGO[Number(m[2]) - 1] + (comAno ? " de " + m[1] : "") : ""; };
+const dataCurta = iso => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ""); return m ? m[3] + "/" + m[2] : ""; };
+const ATUALIZADO = dataLonga(INFO.atualizado_em, true);
+// textos que dependem do mês e das datas das exportações
+(function () {
+  const ate = INFO.ate || {}, txt = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  txt("atualizado", ATUALIZADO ? "Dados atualizados em " + ATUALIZADO + "." : "");
+  document.getElementById("atualizado").hidden = !ATUALIZADO;
+  txt("tk-ate", ate.tiktok ? "a " + dataLonga(ate.tiktok) : "");
+  txt("tk-mes-lb", maiusc(MES_ATUAL_NOME));
+  txt("tk-mes-nota", String(ate.tiktok || "").startsWith(MES_ATUAL) ? "visualizações até " + dataCurta(ate.tiktok) : "visualizações no mês");
+  txt("meta-ate", ate.meta ? "até " + dataCurta(ate.meta) : "no ano");
+  txt("yt-periodo", ate.youtube_inicio && ate.youtube ? ", de " + dataLonga(ate.youtube_inicio, true) + " a " + dataLonga(ate.youtube, true) : "");
+  txt("vid-sub", "Dados de " + MES_ATUAL_NOME + " de " + MES_ATUAL.slice(0, 4) + ".");
+  txt("mes-parcial", maiusc(MES_ATUAL_NOME) + " vai até " + (String(INFO.atualizado_em || "").startsWith(MES_ATUAL) ? "o dia " + Number(INFO.atualizado_em.slice(8, 10)) : "a data da atualização") + ".");
+  txt("acomp-tit", "Acompanhamento de " + MES_ATUAL_NOME);
+})();
 const TIPOS = ["Reels","Posts","TV Corporativa"];
 const nf = new Intl.NumberFormat("pt-BR");
 const pf = new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 0 });
@@ -802,22 +835,22 @@ const SELO_SVG = {
 root.querySelectorAll(".selo[data-i]").forEach(s => { if (SELO_SVG[s.dataset.i]) s.innerHTML = SELO_SVG[s.dataset.i]; });
 
 dash.calc("totais", {
-  inputs: ["producao", "notion_outubro"],
+  inputs: ["producao", "acompanhamento"],
   title: "Totais e médias do ano",
-  description: "Outubro vem do acompanhamento do mês (um por item concluído). Soma dos conteúdos produzidos no ano, média mensal de janeiro a junho e de julho a setembro, e outubro até 19/10.",
-  fn: (producao, notion_outubro) => {
-    // outubro vem do acompanhamento do mês; os outros meses vêm da planilha
+  description: "O mês em andamento vem do acompanhamento (um por item concluído). Soma dos conteúdos produzidos no ano, média mensal de janeiro a junho e de julho a setembro, e o mês em andamento até a data da atualização.",
+  fn: (producao, acompanhamento) => {
+    // o mês em andamento vem do acompanhamento; os outros meses vêm da planilha
     const linhas = (() => {
       const autor = { "Brunna": "Posts", "José": "Posts", "Jhennyfer": "TV Corporativa", "Joana": "TV Corporativa" };
       const nome = s => s === "Fernanda" ? "Maria Fernanda" : s;
-      const out = producao.filter(r => String(r.mes) !== "2026-10").map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
+      const out = producao.filter(r => String(r.mes) !== MES_ATUAL).map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
       // mês corrente: vale o número do acompanhamento, um por item concluído (o tipo segue o primeiro responsável)
-      for (const r of notion_outubro) {
+      for (const r of acompanhamento) {
         if (r["Status"] !== "Concluído") continue;
         let ps = [];
         try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
         const n = nome(ps.find(p => p !== "Produção Externa") || "");
-        out.push({ mes: "2026-10", servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
+        out.push({ mes: MES_ATUAL, servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
       }
       return out;
     })();
@@ -827,7 +860,7 @@ dash.calc("totais", {
       { metrica: "total", valor: soma(() => true) },
       { metrica: "media_jan_jun", valor: Math.round(soma(r => m(r) <= 6) / 6) },
       { metrica: "media_jul_set", valor: Math.round(soma(r => m(r) >= 7 && m(r) <= 9) / 3) },
-      { metrica: "outubro", valor: soma(r => m(r) === 10) }
+      { metrica: "mes_atual", valor: soma(r => m(r) === N_MES) }
     ];
   }
 });
@@ -840,22 +873,22 @@ dash.calc("redes_total", {
 });
 
 dash.calc("por_mes", {
-  inputs: ["producao", "notion_outubro"],
+  inputs: ["producao", "acompanhamento"],
   title: "Conteúdos por mês e tipo",
-  description: "Outubro vem do acompanhamento do mês (um por item concluído). Conteúdos produzidos somados por mês, separados em reels, posts e TV Corporativa.",
-  fn: (producao, notion_outubro) => {
-    // outubro vem do acompanhamento do mês; os outros meses vêm da planilha
+  description: "O mês em andamento vem do acompanhamento (um por item concluído). Conteúdos produzidos somados por mês, separados em reels, posts e TV Corporativa.",
+  fn: (producao, acompanhamento) => {
+    // o mês em andamento vem do acompanhamento; os outros meses vêm da planilha
     const linhas = (() => {
       const autor = { "Brunna": "Posts", "José": "Posts", "Jhennyfer": "TV Corporativa", "Joana": "TV Corporativa" };
       const nome = s => s === "Fernanda" ? "Maria Fernanda" : s;
-      const out = producao.filter(r => String(r.mes) !== "2026-10").map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
+      const out = producao.filter(r => String(r.mes) !== MES_ATUAL).map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
       // mês corrente: vale o número do acompanhamento, um por item concluído (o tipo segue o primeiro responsável)
-      for (const r of notion_outubro) {
+      for (const r of acompanhamento) {
         if (r["Status"] !== "Concluído") continue;
         let ps = [];
         try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
         const n = nome(ps.find(p => p !== "Produção Externa") || "");
-        out.push({ mes: "2026-10", servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
+        out.push({ mes: MES_ATUAL, servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
       }
       return out;
     })();
@@ -870,22 +903,22 @@ dash.calc("por_mes", {
 });
 
 dash.calc("por_tipo", {
-  inputs: ["producao", "notion_outubro"],
+  inputs: ["producao", "acompanhamento"],
   title: "Conteúdos por tipo",
-  description: "Outubro vem do acompanhamento do mês (um por item concluído). Conteúdos produzidos no ano por tipo e a participação de cada um no total.",
-  fn: (producao, notion_outubro) => {
-    // outubro vem do acompanhamento do mês; os outros meses vêm da planilha
+  description: "O mês em andamento vem do acompanhamento (um por item concluído). Conteúdos produzidos no ano por tipo e a participação de cada um no total.",
+  fn: (producao, acompanhamento) => {
+    // o mês em andamento vem do acompanhamento; os outros meses vêm da planilha
     const linhas = (() => {
       const autor = { "Brunna": "Posts", "José": "Posts", "Jhennyfer": "TV Corporativa", "Joana": "TV Corporativa" };
       const nome = s => s === "Fernanda" ? "Maria Fernanda" : s;
-      const out = producao.filter(r => String(r.mes) !== "2026-10").map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
+      const out = producao.filter(r => String(r.mes) !== MES_ATUAL).map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
       // mês corrente: vale o número do acompanhamento, um por item concluído (o tipo segue o primeiro responsável)
-      for (const r of notion_outubro) {
+      for (const r of acompanhamento) {
         if (r["Status"] !== "Concluído") continue;
         let ps = [];
         try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
         const n = nome(ps.find(p => p !== "Produção Externa") || "");
-        out.push({ mes: "2026-10", servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
+        out.push({ mes: MES_ATUAL, servidor: n || "Sem responsável", tipo: autor[n] || "Reels", creditos: 1 });
       }
       return out;
     })();
@@ -897,22 +930,22 @@ dash.calc("por_tipo", {
 });
 
 dash.calc("ranking", {
-  inputs: ["producao", "notion_outubro", "producao2025", "stories2026", "ajustes2026"],
+  inputs: ["producao", "acompanhamento", "producao2025", "stories2026", "ajustes2026"],
   title: "Conteúdos por servidor",
-  description: "Em 2026 inclui também o que foi informado à parte, só no total do ano: posts da Jhennyfer de 14 para 78, 825 impulsionamentos da Aline e 936 copys da Camila (todos os conteúdos passam por ela). Em 2026 inclui as edições de stories, só no total do ano. Separado por ano: 2026, 2025 e Geral, a soma dos dois. Rosi, Raphael, Daniel, Mavi, Rodolfo e a ex-servidora da TV aparecem somados como Ex-servidores. Dani de 2025 é Daniel, outro servidor. Outubro vem do acompanhamento do mês (concluídos, um por responsável). Conteúdos produzidos por servidor, por tipo e por mês, com as somas de todos os tipos e de todos os meses. Rosi e Raphael aparecem somados como Ex-servidores.",
-  fn: (producao, notion_outubro, producao2025, stories2026, ajustes2026) => {
-    // outubro vem do acompanhamento do mês; os outros meses vêm da planilha
+  description: "Em 2026 inclui também o que foi informado à parte, só no total do ano: posts da Jhennyfer de 14 para 78, 825 impulsionamentos da Aline e 936 copys da Camila (todos os conteúdos passam por ela). Em 2026 inclui as edições de stories, só no total do ano. Separado por ano: 2026, 2025 e Geral, a soma dos dois. Rosi, Raphael, Daniel, Mavi, Rodolfo e a ex-servidora da TV aparecem somados como Ex-servidores. Dani de 2025 é Daniel, outro servidor. O mês em andamento vem do acompanhamento (concluídos, um por responsável). Conteúdos produzidos por servidor, por tipo e por mês, com as somas de todos os tipos e de todos os meses. Rosi e Raphael aparecem somados como Ex-servidores.",
+  fn: (producao, acompanhamento, producao2025, stories2026, ajustes2026) => {
+    // o mês em andamento vem do acompanhamento; os outros meses vêm da planilha
     const linhas = (() => {
       const autor = { "Brunna": "Posts", "José": "Posts", "Jhennyfer": "TV Corporativa", "Joana": "TV Corporativa" };
       const nome = s => s === "Fernanda" ? "Maria Fernanda" : s;
-      const out = producao.filter(r => String(r.mes) !== "2026-10").map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
-      for (const r of notion_outubro) {
+      const out = producao.filter(r => String(r.mes) !== MES_ATUAL).map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
+      for (const r of acompanhamento) {
         let ps = [];
         try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
         for (const p of ps) {
           if (p === "Produção Externa") continue;
           const n = nome(p);
-          out.push({ mes: "2026-10", servidor: n, tipo: autor[n] || "Reels", creditos: r["Status"] === "Concluído" ? 1 : 0 });
+          out.push({ mes: MES_ATUAL, servidor: n, tipo: autor[n] || "Reels", creditos: r["Status"] === "Concluído" ? 1 : 0 });
         }
       }
       return out;
@@ -948,27 +981,27 @@ dash.calc("ranking", {
 });
 
 dash.calc("matriz", {
-  inputs: ["producao", "notion_outubro"],
+  inputs: ["producao", "acompanhamento"],
   title: "Servidor por mês",
-  description: "Outubro vem do acompanhamento do mês (concluídos, um por responsável). Conteúdos produzidos por cada servidor em cada tipo, mês a mês, com o total do ano. Rosi e Raphael aparecem somados como Ex-servidores.",
-  fn: (producao, notion_outubro) => {
-    // outubro vem do acompanhamento do mês; os outros meses vêm da planilha
+  description: "O mês em andamento vem do acompanhamento (concluídos, um por responsável). Conteúdos produzidos por cada servidor em cada tipo, mês a mês, com o total do ano. Rosi e Raphael aparecem somados como Ex-servidores.",
+  fn: (producao, acompanhamento) => {
+    // o mês em andamento vem do acompanhamento; os outros meses vêm da planilha
     const linhas = (() => {
       const autor = { "Brunna": "Posts", "José": "Posts", "Jhennyfer": "TV Corporativa", "Joana": "TV Corporativa" };
       const nome = s => s === "Fernanda" ? "Maria Fernanda" : s;
-      const out = producao.filter(r => String(r.mes) !== "2026-10").map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
-      for (const r of notion_outubro) {
+      const out = producao.filter(r => String(r.mes) !== MES_ATUAL).map(r => ({ mes: r.mes, servidor: nome(r.servidor), tipo: r.tipo, creditos: Number(r.creditos) }));
+      for (const r of acompanhamento) {
         let ps = [];
         try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
         for (const p of ps) {
           if (p === "Produção Externa") continue;
           const n = nome(p);
-          out.push({ mes: "2026-10", servidor: n, tipo: autor[n] || "Reels", creditos: r["Status"] === "Concluído" ? 1 : 0 });
+          out.push({ mes: MES_ATUAL, servidor: n, tipo: autor[n] || "Reels", creditos: r["Status"] === "Concluído" ? 1 : 0 });
         }
       }
       return out;
     })();
-    const meses = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out"];
+    const meses = MES_CURTO.slice(0, N_MES);
     const ordem = { "Posts": 0, "Reels": 1, "TV Corporativa": 2 };
     const m = new Map();
     const nomeServ = s => ["Rosi", "Raphael", "Daniel", "Mavi", "Rodolfo", "Ex-servidora"].includes(s) ? "Ex-servidores" : s;
@@ -1008,7 +1041,7 @@ const ST_PEND = ST_ORDEM.slice(0, 4);
 const ST_COR = { "Não iniciada": "#9A9A9A", "Em andamento": "#1E45FB", "Em aprovação": "#CDF22B", "Aguardar": "#FF8A1E", "Pausado": "#E5484D", "Concluído": "#1FA971" };
 const pessoas = r => { try { const v = JSON.parse(r["Responsável"] || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
 
-dash.loader("notion_outubro", {
+dash.loader("acompanhamento", {
   description: "Lê as páginas da visão da base (seguindo para as próximas quando passa de 100 itens) e devolve uma linha por conteúdo.",
   fn: async ({ answer, call, args }) => {
     const ler = a => (typeof a === "string" ? JSON.parse(a) : a);
@@ -1033,27 +1066,27 @@ dash.loader("notion_outubro", {
   }
 });
 
-dash.calc("outubro_status", {
-  inputs: ["notion_outubro"],
-  title: "Itens de outubro por status",
-  description: "Quantos conteúdos da base de outubro estão em cada status, e quantos ainda não foram concluídos.",
-  fn: (notion_outubro) => {
+dash.calc("acompanhamento_status", {
+  inputs: ["acompanhamento"],
+  title: "Itens do mês por status",
+  description: "Quantos conteúdos do acompanhamento do mês estão em cada status, e quantos ainda não foram concluídos.",
+  fn: (acompanhamento) => {
     const ordem = ["Não iniciada","Em andamento","Em aprovação","Pausado","Concluído"];
     const c = {};
     ordem.forEach(s => c[s] = 0);
-    for (const r of notion_outubro) c[r["Status"]] = (c[r["Status"]] || 0) + 1;
-    const pendentes = notion_outubro.filter(r => r["Status"] !== "Concluído").length;
+    for (const r of acompanhamento) c[r["Status"]] = (c[r["Status"]] || 0) + 1;
+    const pendentes = acompanhamento.filter(r => r["Status"] !== "Concluído").length;
     return [...ordem.map(s => ({ status: s, n: c[s] })), { status: "Pendentes", n: pendentes }];
   }
 });
 
 dash.calc("pendencias_pessoa", {
-  inputs: ["notion_outubro"],
+  inputs: ["acompanhamento"],
   title: "Itens por servidor e status",
-  description: "Conteúdos de outubro de cada responsável, separados por status (inclui os concluídos). Um item com duas pessoas conta para as duas.",
-  fn: (notion_outubro) => {
+  description: "Conteúdos do mês de cada responsável, separados por status (inclui os concluídos). Um item com duas pessoas conta para as duas.",
+  fn: (acompanhamento) => {
     const m = new Map();
-    for (const r of notion_outubro) {
+    for (const r of acompanhamento) {
       let ps = [];
       try { ps = JSON.parse(r["Responsável"] || "[]"); } catch (e) { ps = []; }
       if (!ps.length) ps = ["Sem responsável"];
@@ -1088,7 +1121,7 @@ dash.calc("tiktok_mes", {
 dash.calc("tiktok_kpis", {
   inputs: ["tiktok"],
   title: "Resumo do TikTok",
-  description: "Visualizações do ano, médias mensais de janeiro a junho, taxa de interação do ano e visualizações de outubro.",
+  description: "Visualizações do ano, médias mensais de janeiro a junho, taxa de interação do ano e visualizações do mês em andamento.",
   fn: (tiktok) => {
     const ano = tiktok.filter(r => String(r.data) >= "2026-01-01");
     const inter = r => Number(r.curtidas) + Number(r.comentarios) + Number(r.compartilhamentos);
@@ -1100,18 +1133,18 @@ dash.calc("tiktok_kpis", {
       { metrica: "media_views_s1", valor: Math.round(s1.reduce((a, r) => a + Number(r.visualizacoes), 0) / 6) },
       { metrica: "media_inter_s1", valor: Math.round(s1.reduce((a, r) => a + inter(r), 0) / 6) },
       { metrica: "taxa_ano", valor: views ? ints / views : 0 },
-      { metrica: "views_out", valor: ano.filter(r => String(r.data).slice(0, 7) === "2026-10").reduce((a, r) => a + Number(r.visualizacoes), 0) }
+      { metrica: "views_mes", valor: ano.filter(r => String(r.data).slice(0, 7) === MES_ATUAL).reduce((a, r) => a + Number(r.visualizacoes), 0) }
     ];
   }
 });
 
 dash.calc("videos_rank", {
   inputs: ["posts2026", "videos"],
-  title: "Vídeos de destaque em outubro",
-  description: "Os 3 reels do Instagram mais vistos em outubro de 2026, pela exportação de posts, com curtidas, comentários, salvamentos e compartilhamentos. Quando há vídeo, capa e autor cadastrados para o post, eles entram junto.",
+  title: "Vídeos de destaque do mês",
+  description: "Os 3 reels do Instagram mais vistos no mês em andamento, pela exportação de posts, com curtidas, comentários, salvamentos e compartilhamentos. Quando há vídeo, capa e autor cadastrados para o post, eles entram junto.",
   fn: (posts2026, videos) => {
     const extra = new Map(videos.map(v => [String(v.link), v]));
-    return posts2026.filter(r => r.rede === "Instagram" && r.tipo === "Reel do Instagram" && String(r.data) >= "2026-10-01" && String(r.data) <= "2026-10-31")
+    return posts2026.filter(r => r.rede === "Instagram" && r.tipo === "Reel do Instagram" && String(r.data).slice(0, 7) === MES_ATUAL)
       .sort((a, b) => Number(b.visualizacoes) - Number(a.visualizacoes)).slice(0, 3)
       .map(r => {
         const v = extra.get(String(r.link)) || {};
@@ -1122,24 +1155,24 @@ dash.calc("videos_rank", {
 });
 
 dash.calc("concluidos_destino", {
-  inputs: ["notion_outubro"],
+  inputs: ["acompanhamento"],
   title: "Concluídos por destino",
-  description: "Conteúdos com status Concluído na base de outubro, contados por destino.",
-  fn: (notion_outubro) => {
+  description: "Conteúdos com status Concluído no acompanhamento do mês, contados por destino.",
+  fn: (acompanhamento) => {
     const c = {};
-    for (const r of notion_outubro) if (r["Status"] === "Concluído") { const k = r["Destino"] || "Sem destino"; c[k] = (c[k] || 0) + 1; }
+    for (const r of acompanhamento) if (r["Status"] === "Concluído") { const k = r["Destino"] || "Sem destino"; c[k] = (c[k] || 0) + 1; }
     const tot = Object.values(c).reduce((a, b) => a + b, 0);
     return Object.entries(c).map(([destino, n]) => ({ destino, n, participacao: tot ? n / tot : 0 })).sort((a, b) => b.n - a.n || a.destino.localeCompare(b.destino));
   }
 });
 
 dash.calc("concluidos_setor", {
-  inputs: ["notion_outubro"],
+  inputs: ["acompanhamento"],
   title: "Concluídos por setor",
-  description: "Conteúdos com status Concluído na base de outubro, contados por setor.",
-  fn: (notion_outubro) => {
+  description: "Conteúdos com status Concluído no acompanhamento do mês, contados por setor.",
+  fn: (acompanhamento) => {
     const c = {};
-    for (const r of notion_outubro) if (r["Status"] === "Concluído") { const k = r["Setor"] || "Sem setor"; c[k] = (c[k] || 0) + 1; }
+    for (const r of acompanhamento) if (r["Status"] === "Concluído") { const k = r["Setor"] || "Sem setor"; c[k] = (c[k] || 0) + 1; }
     const tot = Object.values(c).reduce((a, b) => a + b, 0);
     return Object.entries(c).map(([setor, n]) => ({ setor, n, participacao: tot ? n / tot : 0 })).sort((a, b) => b.n - a.n || a.setor.localeCompare(b.setor));
   }
@@ -1362,7 +1395,7 @@ dash.calc("resumo_views", {
 dash.calc("youtube_resumo", {
   inputs: ["youtube"],
   title: "YouTube Shorts",
-  description: "Estatísticas dos Shorts do canal GovMT de 16/01/2023 a 20/10/2026 (YouTube Studio): visualizações, visualizações intencionais, marcações Gostei, inscritos ganhos, origem das visualizações, engajamento e os Shorts mais vistos. Conta compartilhada com o Jornalismo.",
+  description: "Estatísticas dos Shorts do canal GovMT no período informado em DADOS_INFO (YouTube Studio): visualizações, visualizações intencionais, marcações Gostei, inscritos ganhos, origem das visualizações, engajamento e os Shorts mais vistos. Conta compartilhada com o Jornalismo.",
   fn: (youtube) => youtube.map(r => ({ grupo: r.grupo, item: r.item, valor: Number(r.valor) }))
 });
 
@@ -1434,7 +1467,7 @@ function desenharMes() {
   const x = d3.scaleBand(MESES, [m.l, W - m.r]).padding(0.28);
   const y = d3.scaleLinear(y0.domain(), [H - m.b, m.t]);
   svg.append("rect").attr("x", x("Jul") - x.step() * x.paddingInner() / 2).attr("y", m.t - 16).attr("width", x.step() * 3).attr("height", H - m.b - m.t + 16).attr("fill", hachura(svg)).attr("opacity", 1);
-  [["Primeiro Semestre", "Jan", 6], ["Eleição", "Jul", 3], ["Retomada", "Out*", 1]].forEach(([nome, ini, n]) => {
+  [["Primeiro Semestre", "Jan", 6], ["Eleição", "Jul", 3], ...(N_MES > 9 ? [["Retomada", MESES[9], N_MES - 9]] : [])].forEach(([nome, ini, n]) => {
     const cx = x(ini) - x.step() * x.paddingInner() / 2 + x.step() * n / 2;
     const tx = svg.append("text").attr("x", cx).attr("y", m.t - 6).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", "var(--color-fg-muted)").text(nome);
     if (tx.node().getComputedTextLength() > x.step() * n - 6) tx.remove();
@@ -1851,9 +1884,10 @@ function desenharEntregas() {
 // redes: o painel abaixo dos cartões muda conforme a rede escolhida
 let redeAtual = "Instagram";
 // painel de Instagram e Facebook
+const META_ATE = dataLonga((INFO.ate || {}).meta);
 const META_INFO = {
-  Instagram: { ico: "camera", sub: "Posts publicados de 1º de janeiro a 20 de outubro de 2026. Interações somam curtidas, comentários, compartilhamentos e salvamentos.", nota: "2022 começa em 27 de outubro, quando a exportação passa a ter dados. 2026 vai até 20 de outubro." },
-  Facebook: { ico: "curtir", sub: "Posts publicados de 1º de janeiro a 20 de outubro de 2026. Interações somam reações, comentários e compartilhamentos.", nota: "2026 vai até 20 de outubro." }
+  Instagram: { ico: "camera", sub: "Posts publicados " + (META_ATE ? "de 1º de janeiro a " + META_ATE + " de 2026" : "em 2026") + ". Interações somam curtidas, comentários, compartilhamentos e salvamentos.", nota: "2022 começa em 27 de outubro, quando a exportação passa a ter dados." + (META_ATE ? " 2026 vai até " + META_ATE + "." : "") },
+  Facebook: { ico: "curtir", sub: "Posts publicados " + (META_ATE ? "de 1º de janeiro a " + META_ATE + " de 2026" : "em 2026") + ". Interações somam reações, comentários e compartilhamentos.", nota: META_ATE ? "2026 vai até " + META_ATE + "." : "" }
 };
 function barrasAno(el, rows, cor) {
   el.innerHTML = "";
@@ -2227,7 +2261,7 @@ function desenharResumo() {
 }
 
 function desenharPendencias() {
-  const ds = dash.data("outubro_status");
+  const ds = dash.data("acompanhamento_status");
   // cartões de status: número, selo e escolha ao passar o mouse
   root.querySelectorAll("#pendencias .selo[data-cor]").forEach(d => { d.style.background = ST_COR[d.dataset.cor]; d.classList.toggle("claro", d.dataset.cor === "Em aprovação"); d.classList.toggle("escuro", d.dataset.cor !== "Em aprovação"); });
   root.querySelectorAll("#pendencias button.st").forEach(b => {
@@ -2271,7 +2305,7 @@ function desenharPPainel() {
     })), d3.max(nomes, x => x[1]));
   }
   // lista dos itens
-  const body = document.getElementById("tb-pend-body"), nd = dash.data("notion_outubro");
+  const body = document.getElementById("tb-pend-body"), nd = dash.data("acompanhamento");
   body.innerHTML = "";
   if (nd.status !== "ok") { if (nd.status === "error" || nd.status === "connect") { const tr = document.createElement("tr"); const td = document.createElement("td"); td.colSpan = 3; falha(td); tr.appendChild(td); body.appendChild(tr); } return; }
   const linhas = nd.data.filter(r => pend ? r["Status"] !== "Concluído" : r["Status"] === st)
@@ -2366,7 +2400,7 @@ function imprimirResumo(d) {
   const data = new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(new Date());
   el.innerHTML = "";
   const h = document.createElement("h1"); h.textContent = "Comunicação Dirigida 2026 · Resumo geral"; el.appendChild(h);
-  const p = document.createElement("p"); p.textContent = "Gerado em " + data; el.appendChild(p);
+  const p = document.createElement("p"); p.textContent = "Gerado em " + data + (ATUALIZADO ? " · dados atualizados em " + ATUALIZADO : ""); el.appendChild(p);
   const k = document.createElement("div"); k.className = "rp-k";
   textosResumo(d).forEach(([t, v, n]) => { const c = document.createElement("div"); c.appendChild(document.createTextNode(t)); const b = document.createElement("b"); b.textContent = v; c.appendChild(b); const s = document.createElement("small"); s.textContent = n; c.appendChild(s); k.appendChild(c); });
   el.appendChild(k);
@@ -2401,7 +2435,7 @@ async function gerarResumoPdf() {
     doc.setFillColor(205, 242, 43); doc.circle(W - 52, 28, 26, "F");
     doc.setTextColor(255, 255, 255); doc.setFont("helvetica", "bold"); doc.setFontSize(24); doc.text("Comunicação Dirigida 2026", M, 50);
     doc.setFont("helvetica", "normal"); doc.setFontSize(11);
-    doc.text("Resumo geral · gerado em " + new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(new Date()), M, 74);
+    doc.text("Resumo geral · gerado em " + new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(new Date()) + (ATUALIZADO ? " · dados de " + ATUALIZADO : ""), M, 74);
     // quatro números
     const cards = textosResumo(d), cw = (W - M * 2 - 14) / 2, ch = 86;
     cards.forEach(([t, v, n], i) => {
