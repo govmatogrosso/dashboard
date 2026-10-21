@@ -697,7 +697,10 @@ img, video { max-width: 100%; }
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-<script src="dados.js"></script>
+<script>
+// o número no fim faz o navegador buscar sempre o dados.js mais novo (o GitHub Pages guarda cópias por 10 minutos)
+document.write('<script src="dados.js?v=' + Date.now() + '"><\/script>');
+</script>
 <script>
 // Pequeno ambiente que faz o painel funcionar fora do Claude: entrega os dados,
 // faz os cálculos, guarda as escolhas (filtros) e redesenha a página quando algo muda.
